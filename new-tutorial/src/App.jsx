@@ -14,6 +14,7 @@ function App() {
     if (!city) return;
 
     try {
+      //Call the API with the user's city and your API key
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
       );
