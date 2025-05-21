@@ -19,7 +19,7 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
       );
       const data = await response.json();
-      setWeather(data);
+      setWeather(data); //Store the data in React state
     } catch (error) {
       console.error('Error fetching weather:', error);
     }
