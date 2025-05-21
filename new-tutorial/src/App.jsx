@@ -9,6 +9,7 @@ function App() {
    // React state to store the weather data returned from the API
   const [weather, setWeather] = useState(null);
 
+  // Function that fetches weather data from OpenWeatherMap API
   const getWeather = async () => {
     if (!city) return;
 
