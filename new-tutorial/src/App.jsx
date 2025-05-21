@@ -36,8 +36,8 @@ function App() {
           value={city}
           onChange={(e) => setCity(e.target.value)} //Update the city as the user types
         />
-        <button onClick={getWeather}>Search</button>
-      </div>
+        <button onClick={getWeather}>Search</button> 
+      </div> 
 
       {weather && weather.main && (
         <div className="weather-result">
