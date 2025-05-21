@@ -34,7 +34,7 @@ function App() {
           type="text"
           placeholder="Enter city..."
           value={city}
-          onChange={(e) => setCity(e.target.value)} //Update the city as the user types
+          onChange={(e) => setCity(e.target.value)} //Update the city as the user type
         />
         <button onClick={getWeather}>Search</button> 
       </div> 
