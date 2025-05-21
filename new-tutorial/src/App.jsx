@@ -28,6 +28,7 @@ function App() {
   return (
     <div className="app-container">
       <h1>🌤 Weather App</h1>
+      {/* Input field for the user to type a city */}
       <div className="search-box">
         <input
           type="text"
