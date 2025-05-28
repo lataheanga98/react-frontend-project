@@ -21,4 +21,14 @@ const events = [
         time: "5:30 PM - 7:00 PM",
         location: "Vava'u Sports Center",
     },
-]
+];
+
+function App() {
+    return (
+        <div className="App">
+            <header>
+                <h1>🏓 Pickleball Schedule</h1>
+            </header>
+        </div>
+    )
+}
