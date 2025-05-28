@@ -44,6 +44,10 @@ function App() {
     setFormData({ title: '', date: '', time: '', location: '' });
   };
 
+  const handleDelete = (indexToDelete) => {
+    setEvents(prev => prev.filter((_, index) => index !== indexToDelete));
+  };
+
   const filteredEvents = events.filter((event) =>
     event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     event.location.toLowerCase().includes(searchTerm.toLowerCase())
@@ -55,7 +59,6 @@ function App() {
         <h1>🏓 Pickleball Schedule</h1>
       </header>
 
-      {/* Search Bar */}
       <div className="search-bar">
         <input
           type="text"
@@ -65,7 +68,6 @@ function App() {
         />
       </div>
 
-      {/* Event Form */}
       <form className="event-form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -101,11 +103,10 @@ function App() {
         <button type="submit">Add Event</button>
       </form>
 
-      {/* Events Display */}
       <main className="schedule-container">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
-            <EventCard key={index} {...event} />
+            <EventCard key={index} {...event} onDelete={() => handleDelete(index)} />
           ))
         ) : (
           <p>No matching events found.</p>
