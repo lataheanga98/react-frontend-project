@@ -15,5 +15,10 @@ const events = [
         time: "2:00 PM - 6:00 PM",
         location: "Saineha High School Gym",
     },
-
+    {
+        title: "Evening Beginner Clinic",
+        date: "2025-06-07",
+        time: "5:30 PM - 7:00 PM",
+        location: "Vava'u Sports Center",
+    },
 ]
