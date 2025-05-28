@@ -13,7 +13,7 @@ const events = [
     title: "Tonga Club Tournament",
     date: "2025-06-05",
     time: "2:00 PM - 6:00 PM",
-    location: "Tanoa Gym",
+    location: "Saineha High School Gym",
   },
   {
     title: "Evening Beginner Clinic",
