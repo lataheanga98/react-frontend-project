@@ -11,19 +11,18 @@ body {
   padding: 1rem;
 }
 
-.schedule-container {
+.search-bar {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  padding: 2rem;
+  margin: 1rem;
 }
 
-footer {
-  text-align: center;
-  padding: 1rem;
-  background-color: #004d40;
-  color: white;
+.search-bar input {
+  width: 300px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .event-form {
@@ -50,3 +49,17 @@ footer {
   border-radius: 5px;
 }
 
+.schedule-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #004d40;
+  color: white;
+}
