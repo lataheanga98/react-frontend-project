@@ -29,6 +29,13 @@ function App() {
             <header>
                 <h1>🏓 Pickleball Schedule</h1>
             </header>
+            <main>
+                <div className="schedule-container">
+                    {events.map((event, index) => (
+                    <EventCard key={index} {...event} />
+                    ))}
+                </div>
+            </main>
         </div>
     )
 }
