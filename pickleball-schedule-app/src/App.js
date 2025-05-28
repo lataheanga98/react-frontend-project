@@ -31,6 +31,8 @@ function App() {
     location: ''
   });
 
+  const [searchTerm, setSearchTerm] = useState('');
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
@@ -42,24 +44,72 @@ function App() {
     setFormData({ title: '', date: '', time: '', location: '' });
   };
 
+  const filteredEvents = events.filter((event) =>
+    event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    event.location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="App">
       <header>
         <h1>🏓 Pickleball Schedule</h1>
       </header>
 
+      {/* Search Bar */}
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by title or location..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+
+      {/* Event Form */}
       <form className="event-form" onSubmit={handleSubmit}>
-        <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Event Title" required />
-        <input type="date" name="date" value={formData.date} onChange={handleChange} required />
-        <input type="text" name="time" value={formData.time} onChange={handleChange} placeholder="Time (e.g. 2PM - 4PM)" required />
-        <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" required />
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Event Title"
+          required
+        />
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="time"
+          value={formData.time}
+          onChange={handleChange}
+          placeholder="Time (e.g. 2PM - 4PM)"
+          required
+        />
+        <input
+          type="text"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          placeholder="Location"
+          required
+        />
         <button type="submit">Add Event</button>
       </form>
 
+      {/* Events Display */}
       <main className="schedule-container">
-        {events.map((event, index) => (
-          <EventCard key={index} {...event} />
-        ))}
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map((event, index) => (
+            <EventCard key={index} {...event} />
+          ))
+        ) : (
+          <p>No matching events found.</p>
+        )}
       </main>
 
       <footer>
