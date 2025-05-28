@@ -12,3 +12,4 @@ const EventCard = ({ title, date, time, location }) => {
   );
 };
 
+export default EventCard;
