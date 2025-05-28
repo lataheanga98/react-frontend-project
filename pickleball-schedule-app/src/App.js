@@ -10,7 +10,7 @@ const events = [
     location: "Vavaʻu Courts",
   },
   {
-    title: "Tonga Club Tournament",
+    title: "Vava'u Club Tournament",
     date: "2025-06-05",
     time: "2:00 PM - 6:00 PM",
     location: "Saineha High School Gym",
