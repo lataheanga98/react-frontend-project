@@ -36,6 +36,10 @@ function App() {
                     ))}
                 </div>
             </main>
+            <footer>
+                <p>© 2025 Vava'u Pickleball Club</p>
+            </footer>
         </div>
-    )
+
+    );
 }
