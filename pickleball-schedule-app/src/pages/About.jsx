@@ -23,7 +23,7 @@ const About = () => (
 
     <h3>What We Offer</h3>
     <ul>
-      <li>🏅 Weekly tournaments and league play</li>
+      <li>🏅 Weekly Tournaments and league play</li>
       <li>🎾 Open play for all skill levels</li>
       <li>📚 Beginner clinics and coaching</li>
       <li>🌍 Community events and outreach</li>
