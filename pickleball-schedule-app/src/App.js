@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 import EventCard from './components/EventCard';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
   const [events, setEvents] = useState([
@@ -54,69 +58,42 @@ function App() {
   );
 
   return (
-    <div className="App">
-      <header>
-        <h1>🏓 Pickleball Schedule</h1>
-      </header>
+    <Router>
+      <div className="App">
+        <header>
+          <h1>🏓 Pickleball Schedule</h1>
+          <nav>
+            <Link to="/">Home</Link> |{" "}
+            <Link to="/about">About</Link> |{" "}
+            <Link to="/contact">Contact</Link>
+          </nav>
+        </header>
 
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search by title or location..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                events={events}
+                formData={formData}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                searchTerm={searchTerm}
+                setSearchTerm={setSearchTerm}
+                handleDelete={handleDelete}
+                filteredEvents={filteredEvents}
+              />
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+
+        <footer>
+          <p>© 2025 Tonga Pickleball Club</p>
+        </footer>
       </div>
-
-      <form className="event-form" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          placeholder="Event Title"
-          required
-        />
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-          placeholder="Time (e.g. 2PM - 4PM)"
-          required
-        />
-        <input
-          type="text"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          placeholder="Location"
-          required
-        />
-        <button type="submit">Add Event</button>
-      </form>
-
-      <main className="schedule-container">
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event, index) => (
-            <EventCard key={index} {...event} onDelete={() => handleDelete(index)} />
-          ))
-        ) : (
-          <p>No matching events found.</p>
-        )}
-      </main>
-
-      <footer>
-        <p>© 2025 Tonga Pickleball Club</p>
-      </footer>
-    </div>
+    </Router>
   );
 }
 
