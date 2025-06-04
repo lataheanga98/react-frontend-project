@@ -63,3 +63,13 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.modal-content button:first-of-type {
+  background-color: #4caf50;
+  color: white;
+}
+
+.modal-content button:last-of-type {
+  background-color: #f44336;
+  color: white;
+}
