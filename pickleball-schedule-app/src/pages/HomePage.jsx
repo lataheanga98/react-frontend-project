@@ -28,7 +28,7 @@ const HomePage = ({
       <main className="schedule-container">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
-            <EventCard key={index} event={event} onClick={() => onEventClick(event)} />
+            <EventCard key={index} event={event} onClick={() => onEventClick(event)}onDelete={() => handleDelete(index)} />
           ))
         ) : (
           <p>No matching events found.</p>

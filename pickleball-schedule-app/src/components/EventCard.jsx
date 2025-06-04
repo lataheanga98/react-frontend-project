@@ -1,12 +1,16 @@
 import React from 'react';
 import './EventCard.css';
 
-const EventCard = ({ event, onClick }) => (
+const EventCard = ({ event, onClick, onDelete }) => (
   <div className="event-card" onClick={onClick}>
     <h3>{event.title}</h3>
     <p><strong>Date:</strong> {event.date}</p>
     <p><strong>Time:</strong> {event.time}</p>
     <p><strong>Location:</strong> {event.location}</p>
+    <button className="delete-button" onClick={(e) => {
+      e.stopPropagation(); // prevent modal from opening
+      onDelete();
+    }}>Delete</button>
   </div>
 );
 

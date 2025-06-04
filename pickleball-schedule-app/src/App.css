@@ -192,3 +192,17 @@ nav a:hover {
   font-weight: bold;
   cursor: not-allowed;
 }
+
+.delete-button {
+  margin-top: 10px;
+  background-color: #f44336;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
