@@ -12,3 +12,11 @@ const EventModal = ({ event, onClose, onRSVP, rsvpCount }) => {
         <p><strong>Time:</strong> {event.time}</p>
         <p><strong>Location:</strong> {event.location}</p>
 
+   <button onClick={onRSVP}>✅ Going ({rsvpCount})</button>
+        <button onClick={onClose}>Close</button>
+      </div>
+    </div>
+  );
+};
+
+export default EventModal;
