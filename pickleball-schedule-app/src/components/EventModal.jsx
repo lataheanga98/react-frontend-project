@@ -1,5 +1,4 @@
 import React from 'react';
-import './EventModal.css';
 
 const EventModal = ({ event, onClose, onRSVP, rsvpCount }) => {
   if (!event) return null;

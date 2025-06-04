@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import './App.css';
-import EventCard from './components/EventCard';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import EventModal from './components/EventModal';
 
 function App() {
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [rsvpCounts, setRsvpCounts] = useState({});
+
   const [events, setEvents] = useState([
     {
       title: "Morning Open Play",
@@ -73,16 +76,31 @@ function App() {
           <Route
             path="/"
             element={
-              <HomePage
-                events={events}
-                formData={formData}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                handleDelete={handleDelete}
-                filteredEvents={filteredEvents}
-              />
+              <>
+                <HomePage
+                  events={events}
+                  formData={formData}
+                  handleChange={handleChange}
+                  handleSubmit={handleSubmit}
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  handleDelete={handleDelete}
+                  filteredEvents={filteredEvents}
+                  onEventClick={(event) => setSelectedEvent(event)}
+                />
+                <EventModal
+                  event={selectedEvent}
+                  onClose={() => setSelectedEvent(null)}
+                  onRSVP={() => {
+                    const id = selectedEvent.title + selectedEvent.date;
+                    setRsvpCounts((prev) => ({
+                      ...prev,
+                      [id]: (prev[id] || 0) + 1
+                    }));
+                  }}
+                  rsvpCount={rsvpCounts[selectedEvent?.title + selectedEvent?.date] || 0}
+                />
+              </>
             }
           />
           <Route path="/about" element={<About />} />

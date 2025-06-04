@@ -1,8 +1,10 @@
 import React from 'react';
 import EventCard from '../components/EventCard';
 
-const HomePage = ({ 
-  events, formData, handleChange, handleSubmit, searchTerm, setSearchTerm, handleDelete, filteredEvents 
+const HomePage = ({
+  events, formData, handleChange, handleSubmit,
+  searchTerm, setSearchTerm, handleDelete,
+  filteredEvents, onEventClick
 }) => {
   return (
     <>
@@ -26,7 +28,7 @@ const HomePage = ({
       <main className="schedule-container">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
-            <EventCard key={index} {...event} onDelete={() => handleDelete(index)} />
+            <EventCard key={index} event={event} onClick={() => onEventClick(event)} />
           ))
         ) : (
           <p>No matching events found.</p>
