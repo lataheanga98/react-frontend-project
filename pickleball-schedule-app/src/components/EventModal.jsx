@@ -7,8 +7,13 @@ const EventModal = ({ event, onClose, onRSVP, rsvpCount, isEditing, onEdit, onSa
   useEffect(() => {
     setEditData(event || {});
   }, [event]);
-  
+
   if (!event) return null;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setEditData(prev => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="modal-overlay">
