@@ -9,6 +9,7 @@ import EventModal from './components/EventModal';
 function App() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [rsvpCounts, setRsvpCounts] = useState({});
+  const [isEditing, setIsEditing] = useState(false);
 
   const [events, setEvents] = useState([
     {
@@ -60,6 +61,17 @@ function App() {
     event.location.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  const handleEventUpdate = (updatedEvent) => {
+  setEvents(prevEvents =>
+    prevEvents.map(event =>
+      event === selectedEvent ? updatedEvent : event
+    )
+  );
+  setSelectedEvent(updatedEvent);
+  setIsEditing(false);
+};
+
+
   return (
     <Router>
       <div className="App">
@@ -90,16 +102,23 @@ function App() {
                 />
                 <EventModal
                   event={selectedEvent}
-                  onClose={() => setSelectedEvent(null)}
+                  onClose={() => {
+                  setSelectedEvent(null);
+                  setIsEditing(false);
+                }}
                   onRSVP={() => {
-                    const id = selectedEvent.title + selectedEvent.date;
-                    setRsvpCounts((prev) => ({
-                      ...prev,
-                      [id]: (prev[id] || 0) + 1
-                    }));
-                  }}
+                  const id = selectedEvent.title + selectedEvent.date;
+                  setRsvpCounts((prev) => ({
+                  ...prev,
+                  [id]: (prev[id] || 0) + 1
+                  }));
+                }}
                   rsvpCount={rsvpCounts[selectedEvent?.title + selectedEvent?.date] || 0}
-                />
+                  isEditing={isEditing}
+                  onEdit={() => setIsEditing(true)}
+                  onSaveEdit={handleEventUpdate}
+              />
+
               </>
             }
           />
