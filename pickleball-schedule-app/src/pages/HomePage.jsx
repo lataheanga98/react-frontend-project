@@ -54,6 +54,22 @@ const HomePage = ({
           placeholder="Location"
           required
         />
+
+        {/* ✅ New Category select field */}
+        <select
+          name="category"
+          value={formData.category || ''}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select Category</option>
+          <option value="Beginner">Beginner</option>
+          <option value="Intermediate">Intermediate</option>
+          <option value="Advanced">Advanced</option>
+          <option value="Open Play">Open Play</option>
+          <option value="Tournament">Tournament</option>
+        </select>
+
         <button type="submit">Add Event</button>
       </form>
 
