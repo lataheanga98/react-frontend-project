@@ -17,7 +17,7 @@ function App() {
       date: "2025-06-01",
       time: "9:00 AM - 11:00 AM",
       location: "Vavaʻu Courts",
-      category: "Open Play"
+      Category: "Open Play"
     },
     {
       title: "Tonga Club Tournament",
