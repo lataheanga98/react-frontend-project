@@ -7,10 +7,16 @@ const EventCard = ({ event, onClick, onDelete }) => (
     <p><strong>Date:</strong> {event.date}</p>
     <p><strong>Time:</strong> {event.time}</p>
     <p><strong>Location:</strong> {event.location}</p>
-    <button className="delete-button" onClick={(e) => {
-      e.stopPropagation(); // prevent modal from opening
-      onDelete();
-    }}>Delete</button>
+    <p><strong>Category:</strong> {event.category}</p>
+    <button
+      className="delete-button"
+      onClick={(e) => {
+        e.stopPropagation();
+        onDelete();
+      }}
+    >
+      Delete
+    </button>
   </div>
 );
 
