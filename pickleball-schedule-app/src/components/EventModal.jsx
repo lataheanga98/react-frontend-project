@@ -1,6 +1,13 @@
 import React from 'react';
 
-const EventModal = ({ event, onClose, onRSVP, rsvpCount }) => {
+const EventModal = ({ event, onClose, onRSVP, rsvpCount, isEditing, onEdit, onSaveEdit }) => {
+
+  const [editData, setEditData] = useState(event || {});
+
+  useEffect(() => {
+    setEditData(event || {});
+  }, [event]);
+  
   if (!event) return null;
 
   return (
