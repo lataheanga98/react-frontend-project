@@ -18,17 +18,53 @@ const HomePage = ({
       </div>
 
       <form className="event-form" onSubmit={handleSubmit}>
-        <input type="text" name="title" value={formData.title} onChange={handleChange} placeholder="Event Title" required />
-        <input type="date" name="date" value={formData.date} onChange={handleChange} required />
-        <input type="text" name="time" value={formData.time} onChange={handleChange} placeholder="Time (e.g. 2PM - 4PM)" required />
-        <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" required />
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+          placeholder="Event Title"
+          required
+        />
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="time"
+          value={formData.time}
+          onChange={handleChange}
+          placeholder="Time (e.g. 2PM - 4PM)"
+          required
+        />
+        <input
+          type="text"
+          name="location"
+          value={formData.location}
+          onChange={handleChange}
+          placeholder="Location"
+          required
+        />
         <button type="submit">Add Event</button>
       </form>
 
       <main className="schedule-container">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event, index) => (
-            <EventCard key={index} event={event} onClick={() => onEventClick(event)}onDelete={() => handleDelete(index)} />
+            <EventCard
+              key={index}
+              event={event}
+              onClick={() => onEventClick(event)}
+              onDelete={() => {
+                if (window.confirm("Are you sure you want to delete this event?")) {
+                  handleDelete(index);
+                }
+              }}
+            />
           ))
         ) : (
           <p>No matching events found.</p>
