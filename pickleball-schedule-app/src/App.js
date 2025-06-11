@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -11,7 +11,7 @@ function App() {
   const [rsvpCounts, setRsvpCounts] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
-  const [events, setEvents] = useState([
+  const initialEvents = [
     {
       title: "Morning Open Play",
       date: "2025-06-01",
@@ -30,7 +30,12 @@ function App() {
       time: "5:30 PM - 7:00 PM",
       location: "Vavaʻu Sports Center",
     },
-  ]);
+  ];
+
+  const [events, setEvents] = useState(() => {
+    const savedEvents = localStorage.getItem('events');
+    return savedEvents ? JSON.parse(savedEvents) : initialEvents;
+  });
 
   const [formData, setFormData] = useState({
     title: '',
@@ -62,15 +67,19 @@ function App() {
   );
 
   const handleEventUpdate = (updatedEvent) => {
-  setEvents(prevEvents =>
-    prevEvents.map(event =>
-      event === selectedEvent ? updatedEvent : event
-    )
-  );
-  setSelectedEvent(updatedEvent);
-  setIsEditing(false);
-};
+    setEvents(prevEvents =>
+      prevEvents.map(event =>
+        event === selectedEvent ? updatedEvent : event
+      )
+    );
+    setSelectedEvent(updatedEvent);
+    setIsEditing(false);
+  };
 
+  // ✅ Save events to LocalStorage whenever events state changes
+  useEffect(() => {
+    localStorage.setItem('events', JSON.stringify(events));
+  }, [events]);
 
   return (
     <Router>
@@ -103,22 +112,21 @@ function App() {
                 <EventModal
                   event={selectedEvent}
                   onClose={() => {
-                  setSelectedEvent(null);
-                  setIsEditing(false);
-                }}
+                    setSelectedEvent(null);
+                    setIsEditing(false);
+                  }}
                   onRSVP={() => {
-                  const id = selectedEvent.title + selectedEvent.date;
-                  setRsvpCounts((prev) => ({
-                  ...prev,
-                  [id]: (prev[id] || 0) + 1
-                  }));
-                }}
+                    const id = selectedEvent.title + selectedEvent.date;
+                    setRsvpCounts((prev) => ({
+                      ...prev,
+                      [id]: (prev[id] || 0) + 1
+                    }));
+                  }}
                   rsvpCount={rsvpCounts[selectedEvent?.title + selectedEvent?.date] || 0}
                   isEditing={isEditing}
                   onEdit={() => setIsEditing(true)}
                   onSaveEdit={handleEventUpdate}
-              />
-
+                />
               </>
             }
           />
