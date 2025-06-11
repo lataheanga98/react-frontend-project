@@ -6,6 +6,11 @@ const HomePage = ({
   searchTerm, setSearchTerm, handleDelete,
   filteredEvents, onEventClick
 }) => {
+
+  const sortedEvents = [...filteredEvents].sort((a, b) =>
+    new Date(a.date) - new Date(b.date)
+  );
+
   return (
     <>
       <div className="search-bar">
@@ -53,8 +58,8 @@ const HomePage = ({
       </form>
 
       <main className="schedule-container">
-        {filteredEvents.length > 0 ? (
-          filteredEvents.map((event, index) => (
+        {sortedEvents.length > 0 ? (
+          sortedEvents.map((event, index) => (
             <EventCard
               key={index}
               event={event}
